@@ -1,0 +1,189 @@
+/* Neon Harbor — interface styling. The game canvas fills the window; the HUD and
+   screens sit above it. Warm sunset palette to match the city. */
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: #10131a;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  color: #f2f2f2;
+}
+#game {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: none;
+}
+#status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+#hud { position: fixed; inset: 0; pointer-events: none; }
+#hud-top-left {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+#health-bar {
+  width: 220px;
+  height: 20px;
+  background: rgba(0, 0, 0, 0.55);
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+#health-fill { height: 100%; width: 100%; background: #4caf50; transition: width 0.15s; }
+#health-text {
+  position: absolute;
+  inset: 0;
+  text-align: center;
+  line-height: 20px;
+  font-weight: bold;
+  font-size: 13px;
+  text-shadow: 0 1px 2px #000;
+}
+#money {
+  font-size: 26px;
+  font-weight: bold;
+  color: #7be07b;
+  text-shadow: 0 2px 3px #000;
+}
+#ammo-row { font-size: 15px; font-weight: bold; text-shadow: 0 1px 2px #000; }
+#hud-top-right {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  text-align: right;
+}
+#stars { font-size: 26px; letter-spacing: 3px; color: #ffd23f; text-shadow: 0 2px 3px #000; }
+#clock { font-size: 20px; font-weight: bold; text-shadow: 0 2px 3px #000; }
+#speed { font-size: 16px; color: #ffd23f; text-shadow: 0 1px 2px #000; }
+#objective {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 560px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  background: rgba(0, 0, 0, 0.55);
+  padding: 8px 16px;
+  border-radius: 6px;
+  border-left: 4px solid #ffd23f;
+}
+#mission-list {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  font-size: 13px;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 8px 10px;
+  border-radius: 6px;
+  line-height: 1.5;
+}
+#mission-list .mission-row.active { color: #ffd23f; font-weight: bold; }
+#minimap {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.75);
+  border-radius: 4px;
+  background: #20301f;
+}
+#toast {
+  position: absolute;
+  left: 50%;
+  bottom: 90px;
+  transform: translateX(-50%);
+  font-size: 19px;
+  font-weight: bold;
+  text-shadow: 0 2px 3px #000;
+  opacity: 0;
+  transition: opacity 0.3s;
+  text-align: center;
+}
+#dialogue {
+  position: absolute;
+  left: 50%;
+  bottom: 150px;
+  transform: translateX(-50%);
+  width: 640px;
+  background: rgba(10, 12, 20, 0.85);
+  border: 2px solid #ffd23f;
+  border-radius: 8px;
+  padding: 14px 18px;
+}
+#dialogue-title { color: #ffd23f; font-weight: bold; margin-bottom: 6px; }
+#dialogue-text { font-size: 16px; line-height: 1.45; }
+#dialogue-hint { margin-top: 8px; font-size: 12px; color: #bbb; text-align: right; }
+#damage-flash {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(255, 0, 0, 0.55) 100%);
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.screen {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(8, 10, 18, 0.72);
+  z-index: 10;
+}
+.panel {
+  max-width: 620px;
+  width: 90%;
+  background: rgba(16, 20, 32, 0.94);
+  border: 2px solid #ffd23f;
+  border-radius: 12px;
+  padding: 30px 36px;
+  text-align: center;
+  box-shadow: 0 12px 50px rgba(0, 0, 0, 0.6);
+}
+.panel h1 {
+  margin: 0 0 6px;
+  font-size: 44px;
+  letter-spacing: 4px;
+  color: #ffd23f;
+  text-shadow: 0 0 24px rgba(255, 210, 63, 0.5);
+}
+.panel .tagline { font-size: 17px; color: #e8e8e8; margin: 6px 0 14px; }
+.panel .story { font-size: 15px; line-height: 1.55; color: #cfcfcf; }
+.panel .controls {
+  text-align: left;
+  display: inline-block;
+  font-size: 14px;
+  line-height: 1.9;
+  margin: 10px 0 18px;
+  color: #ddd;
+}
+.panel .controls b { color: #ffd23f; }
+.panel .foot { font-size: 12px; color: #999; margin-top: 16px; }
+button.big {
+  display: block;
+  width: 100%;
+  margin: 8px 0;
+  padding: 13px;
+  font-size: 17px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: #111;
+  background: #ffd23f;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+button.big:hover { background: #ffe27a; }
